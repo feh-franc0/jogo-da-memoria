@@ -16,7 +16,7 @@ function startGame() {
 function initializeCards(cards) {
     let gameBoard = document.getElementById("gameBoard");
 
-    game.cards.forEach(card=>{
+    game.cards.forEach(card => {
 
         let cardElement = document.createElement('div');
         cardElement.id = card.id;
@@ -34,7 +34,7 @@ function initializeCards(cards) {
 
 }
 
-function createCardContent(card,cardElement){
+function createCardContent(card, cardElement) {
 
     createCardFace(FRONT, card, cardElement);
     createCardFace(BACK, card, cardElement);
@@ -42,7 +42,7 @@ function createCardContent(card,cardElement){
 
 }
 
-function createCardFace(face, card, element){
+function createCardFace(face, card, element) {
 
     let cardElementFace = document.createElement('div');
     cardElementFace.classList.add(face);
@@ -58,24 +58,26 @@ function createCardFace(face, card, element){
 }
 
 
-function flipCard(){
+function flipCard() {
 
     if (game.setCard(this.id)) {
 
         this.classList.add("flip")
-        if(game.checkMatch()){
-            game.clearCards();
-        }else{
-            setTimeout(()=>{
-            let firstCardView = document.getElementById(game.firstCard.id);
-            let secondCardView = document.getElementById(game.secondCard.id);
+        if (game.secondCard) {
+            if (game.checkMatch()) {
+                game.clearCards();
+            } else {
+                setTimeout(() => {
+                    let firstCardView = document.getElementById(game.firstCard.id);
+                    let secondCardView = document.getElementById(game.secondCard.id);
 
-            firstCardView.classList.remove('flip');
-            secondCardView.classList.remove('flip');
-            game.clearCards();
-            }, 1000);
+                    firstCardView.classList.remove('flip');
+                    secondCardView.classList.remove('flip');
+                    game.unflipCards();
+                }, 1000);
 
-        };
+            };
+        }
     }
 
 }
