@@ -4,6 +4,20 @@ let game = {
     firstCard: null,
     secondCard: null,
 
+    techs: ['angular',
+        'bootstrap',
+        'css',
+        'electron',
+        'firebase',
+        'html',
+        'javascript',
+        'mongo',
+        'node',
+        'react'
+    ],
+
+    cards: null,
+
     setCard: function (id) {
 
         let card = this.cards.filter(card => card.id === id)[0];
@@ -49,19 +63,7 @@ let game = {
     },
 
 
-    techs: ['angular',
-        'bootstrap',
-        'css',
-        'electron',
-        'firebase',
-        'html',
-        'javascript',
-        'mongo',
-        'node',
-        'react'
-    ],
-
-    cards: null,
+    
 
 
     createCardsFromTechs: function () {
